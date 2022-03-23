@@ -1,0 +1,48 @@
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #252a34;
+}
+
+button {
+  font-family: roboto;
+  letter-spacing: 1px;
+  padding: 1rem 5rem;
+  border-radius: 9px;
+  font-size: 1.5rem;
+  color: #eaeaea;
+  font-weight: bold;
+  background-color: #ff2e63;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  --a: initial;
+}
+
+button:after {
+  content: "";
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: var(--diameter);
+  height: var(--diameter);
+  transform: scale(0);
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: var(--a);
+}
+
+@keyframes ripple-effect {
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

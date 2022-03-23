@@ -1,0 +1,45 @@
+html,
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+#frame {
+  width: 300px;
+  height: 450px;
+  transition: transform 200ms;
+}
+
+#frame:hover {
+  transform: scale3d(1.05, 1.05, 1.05);
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  background-image: url("./background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition-duration: 250ms;
+  transition-property: transform, box-shadow;
+  transition-timing-function: ease-out;
+}
+
+#light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+}
+
+#card > h1 {
+  font-size: 50px;
+}
