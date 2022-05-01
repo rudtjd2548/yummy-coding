@@ -1,0 +1,72 @@
+html, body {
+  background-color: #f1f1f1;
+  font-family: monospace;
+}
+
+.carousel {
+  width: 100%;
+  height: 60vh;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+}
+.email { margin-right: 20px; }
+
+.img-1 {
+  width: 100%;
+  background-color: #333;
+  margin-top: 50px;
+}
+
+#mouse-cursor {
+  position: absolute;
+  top:0;
+  left: 0;
+  will-change: transform;
+  transform: translate3d(-100%, -100%, 0);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+#mouse-cursor > div {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  font-size: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --cursor-scale: 1;
+  transform: scale3d(var(--cursor-scale), var(--cursor-scale), 1);
+  will-change: transform;
+  transition: transform 150ms ease-in-out,
+              background-color 150ms ease-in-out;
+}
+
+#mouse-cursor > div::after {
+  content: attr(data-name);
+  position: absolute;
+  color: #fff;
+  transform: scale(0.45);
+  white-space: nowrap;
+}
+
+.cursor-text-mode {
+  mix-blend-mode: initial !important;
+}
+
+.cursor-text-mode > div {
+  background-color: #333 !important;
+}

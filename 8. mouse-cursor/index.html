@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Mouse Cursor</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="carousel" data-cursor="carousel">Carousel</div>
+  <a href="#" class="email" data-cursor="link" data-name="Send Email">a92667441@gmail.com</a>
+  <a href="#" class="address" data-cursor="link" data-name="Show Map">강남구 테헤란로</a>
+  <img src="image1.jpg" class="img-1" data-cursor="img">
+
+  <div id="mouse-cursor">
+    <div></div>
+  </div>
+
+  <script>
+    const cursorParent = document.getElementById('mouse-cursor')
+    const cursorChild = cursorParent.children[0]
+    window.addEventListener('mousemove', mousemove)
+    window.addEventListener('mousedown', mousedown)
+    window.addEventListener('mouseup', mouseup)
+
+    let scale = 1
+    let stage = ''
+    let carouselDirection = ''
+    let cursorX = 0, cursorY = 0
+    function mousemove(e) {
+      cursorX = e.pageX - cursorParent.offsetWidth / 2
+      cursorY = e.pageY - cursorParent.offsetHeight / 2
+      cursorParent.style.transform =
+        `translate3d(${cursorX}px, ${cursorY}px, 0)`
+
+      switch(e.target.getAttribute('data-cursor')) {
+        case 'carousel':
+          carouselDirection = cursorX < innerWidth / 2 ? 'Prev' : 'Next'
+          cursorChild.setAttribute('data-name', carouselDirection)
+          if (stage === 'carousel') return
+          scale = 5
+          stage = 'carousel'
+          cursorParent.className = 'cursor-text-mode'
+          break
+        case 'link':
+          if (stage === 'link') return
+          scale = 5
+          stage = 'link'
+          cursorChild.setAttribute('data-name', e.target.getAttribute('data-name'))
+          cursorParent.className = 'cursor-text-mode'
+          break
+        case 'img':
+          if (stage === 'img') return
+          scale = 1
+          stage = 'img'
+          cursorChild.setAttribute('data-name', '')
+          cursorParent.className = ''
+          break
+        default:
+          if (stage === '') return
+          scale = 1
+          stage = ''
+          cursorChild.setAttribute('data-name', '')
+          cursorParent.className = ''
+          break
+      }
+      cursorChild.style.setProperty('--cursor-scale', scale)
+    }
+    function mousedown(e) {
+      scale *= 0.8
+      cursorChild.style.setProperty('--cursor-scale', scale)
+    }
+    function mouseup(e) {
+      scale *= 1.25
+      cursorChild.style.setProperty('--cursor-scale', scale)
+    }
+  </script>
+</body>
+</html>

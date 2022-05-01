@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <p class="style3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+  <script>
+    function paragraph(element) {
+      const array = element.innerText.split('')
+      const special = ['~', '@', '!', '#', '$', '%', '^', '&', '*']
+      const exception = [' ', '\n', '.', ',']
+      const random = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      
+      const numArray = []
+      array.forEach(char => {
+        const num = random(5, 40)
+        numArray.push(num)
+      })
+
+      let completeCount
+      let newText
+      const timer = setInterval(() => {
+        completeCount = 0
+        newText = ''
+        numArray.forEach((num, i) => {
+          if (exception.includes(array[i]) || numArray[i] === 0) {
+            newText += array[i]
+            completeCount += 1
+          } else {
+            newText += special[numArray[i] % special.length]
+            numArray[i] = --num
+          }
+        })
+
+        element.innerText = newText
+        if (completeCount === numArray.length) clearInterval(timer)
+      }, 100)
+    }
+
+    const p = document.querySelector('p')
+    paragraph(p)
+  </script>
+</body>
+</html>
