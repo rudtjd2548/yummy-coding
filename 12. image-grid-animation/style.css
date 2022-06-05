@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Quicksand:wght@300&display=swap');
+
+html, body {
+  background-color: #121212;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  color: #aaa;
+  font-family: 'Quicksand', serif;
+}
+@media (max-width: 800px) { html, body { font-size: 13px; } }
+@media (max-width: 650px) { html, body { font-size: 10px; } }
+
+.wrapper {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7rem 5rem;
+  margin: 7rem 0;
+}
+
+@media (max-width: 480px) { 
+  .wrapper { grid-template-columns: repeat(1, 1fr); }
+}
+
+@media (min-width: 1300px) { 
+  .wrapper { grid-template-columns: repeat(3, 1fr); }
+}
+
+.box {
+  --box-width: 20rem;
+  --box-height: 30rem;
+  --frag-width: calc(var(--box-width) / var(--col));
+  --frag-height: calc(var(--box-height) / var(--row));
+  --img-url: url('https://djjjk9bjm164h.cloudfront.net/leather01.jpg');
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: var(--box-width);
+  height: var(--box-height);
+  position: relative;
+}
+
+.box::before {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + 1.5rem);
+  font-size: 1.7rem;
+}
+
+.box::after {
+  content: "CLICK ME";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+  
+  background-image: repeating-linear-gradient(-45deg, rgba(100,100,100, 0.25), rgba(100,100,100, 0.25) 1px, transparent 1px, transparent 6px);
+  background-size: 4px 4px;
+  transition: all 0.2s;
+}
+
+.box.hide::after { opacity: 0; }
+.box.hide:hover::after { opacity: 0; }
+.box:hover::after { 
+  background-image: initial;
+  font-size: 1.8rem;
+}
+
+.fragment {
+  --x-offset: calc(var(--x) * var(--frag-width) * -1);
+  --y-offset: calc(var(--y) * var(--frag-height) * -1);
+  --rotateX: rotateX(0);
+  --rotateY: rotateY(0);
+  width: var(--frag-width);
+  height: var(--frag-height);
+  background: var(--img-url) var(--x-offset) var(--y-offset) / var(--box-width) var(--box-height) no-repeat;
+  backface-visibility: hidden;
+  will-change: transform;
+  transform: var(--rotateX) var(--rotateY) scale(0.8);
+  animation: flip var(--duration) linear var(--delay) forwards;
+}
+@keyframes flip {
+  0% { transform: var(--rotateX) var(--rotateY) scale(0.8); opacity: 0; }
+  70% { transform: rotateX(0) rotateY(0) scale(0.8); opacity: 1; }
+  100% { transform: rotateX(0) rotateY(0) scale(1); }
+}
