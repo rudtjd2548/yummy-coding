@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">YUMMY CODING</div>
+  <div class="start-screen">Start Screen</div>
+  <div class="main-content-1">
+    <div class="sticky">
+      <div class="sticky-title">스크롤 튜토리얼</div>
+      <div class="section section-1">
+        <div class="title">#1 폴더 스타일</div>
+        <div class="content">
+          <img src="./image1.jpg">
+        </div>
+      </div>
+      <div class="section section-2">
+        <div class="title">#2 스크롤 애니메이션</div>
+        <div class="content">
+          <img src="./image2.jpg">
+        </div>
+      </div>
+      <div class="section section-3">
+        <div class="title">#3 차근차근 배워봐요!</div>
+        <div class="content">
+          <img src="./image3.jpg">
+        </div>
+      </div>
+      <div class="section section-4">
+        <div class="title">#4 어렵지 않아요 😁</div>
+        <div class="content">
+          <img src="./image4.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    class FolderScroll {
+      constructor(wrapper, sticky) {
+        this.wrapper = wrapper
+        this.sticky = sticky
+        this.children = this.sticky.querySelectorAll('.section')
+        this.length = this.children.length
+        this.headerVh = 6
+        this.contentVh = 96 - this.headerVh * this.length
+        this.start = 0
+        this.end = 0
+      }
+
+      init() {
+        this.start = this.wrapper.offsetTop + 100
+        this.end = this.wrapper.offsetTop + this.wrapper.offsetHeight - innerHeight - 100
+
+        this.children.forEach((child, i) => {
+          child.style.bottom = -(100 - this.headerVh * (this.length - i)) + 'vh'
+          child.querySelector('.title').style.height = this.headerVh + 'vh'
+          child.querySelector('.content').style.height = this.contentVh + 'vh'
+        })
+      }
+
+      animate() {
+        this.children.forEach((child, i) => {
+          const unit = (this.end - this.start) / this.length
+          const s = this.start + unit * i + 100
+          const e = this.start + unit * (i + 1)
+
+          if (scrollY <= s) {
+            child.style.transform = `translate3d(0, 0, 0)`
+          } else if (scrollY >= e) {
+            child.style.transform = `translate3d(0, ${-this.contentVh}%, 0)`
+          } else {
+            child.style.transform = `translate3d(0, ${(scrollY - s) / (unit - 100) * (-this.contentVh)}%, 0)`
+          }
+        })
+      }
+    }
+    
+    const mainContent1 = document.querySelector('.main-content-1')
+    const sticky = document.querySelector('.sticky')
+    const folderScroll = new FolderScroll(mainContent1, sticky)
+    folderScroll.init()
+
+    window.addEventListener('resize', () => {
+      folderScroll.init()
+    })
+    window.addEventListener('scroll', () => {
+      folderScroll.animate()
+    })
+  </script>
+</body>
+</html>
