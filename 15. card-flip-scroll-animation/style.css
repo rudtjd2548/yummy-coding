@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&family=Titan+One&display=swap');
+
+html, body {
+  background-color: #FBF8F1;
+  font-family: 'Titan One', cursive;
+  color: #2f2f2f;
+}
+
+.start-screen, .end-screen {
+  width: 100%;
+  height: 100vh;
+  background-color: #2f2f2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vw;
+  color: #f1f1f1;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.start-screen > h1 {
+  animation: bounce 0.5s ease-out alternate-reverse infinite;
+}
+
+@keyframes bounce {
+  100% {
+    transform: translateY(-20%);
+  }
+}
+
+.end-screen {
+  font-size: 3vw;
+}
+
+.main-content-1 {
+  width: 100%;
+  height: 500vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sticky-background {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8vw;
+}
+
+.card-frame {
+  position: absolute;
+  width: 95vw;
+  height: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card {
+  width: 24%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vw;
+  transform-style: preserve-3d;
+  position: relative;
+  transform: perspective(4000px)
+  translateX(100vw) 
+  rotateY(180deg);
+  transition: transform 0.1s;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1vw;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.front {
+  background-color: #FFF;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: #E0DED7;
+  background-image: repeating-linear-gradient(0deg, #3B3A38, #3B3A38 33.3%, #ffffff00 0px, #ffffff00 67%);
+  background-size: 100%;
+}
