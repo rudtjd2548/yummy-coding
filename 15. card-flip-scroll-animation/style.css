@@ -13,7 +13,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5vw;
+  font-size: 8vw;
   color: #f1f1f1;
   text-align: center;
   line-height: 1.2;
@@ -30,7 +30,7 @@ html, body {
 }
 
 .end-screen {
-  font-size: 3vw;
+  font-size: 8vw;
 }
 
 .main-content-1 {
@@ -72,10 +72,10 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5vw;
+  font-size: 20vw;
   transform-style: preserve-3d;
   position: relative;
-  transform: perspective(4000px)
+  transform: perspective(100vw)
   translateX(100vw) 
   rotateY(180deg);
   transition: transform 0.1s;
@@ -104,4 +104,22 @@ html, body {
   background-color: #E0DED7;
   background-image: repeating-linear-gradient(0deg, #3B3A38, #3B3A38 33.3%, #ffffff00 0px, #ffffff00 67%);
   background-size: 100%;
+}
+
+@media screen and (orientation:portrait) {
+  .card-frame {
+    display: grid;
+    height: initial;
+    width: initial;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10vw;
+    justify-items: center;
+  }
+
+  .card {
+    font-size: 20vw;
+    width: 35vw;
+    height: 50vw;
+  }
 }
