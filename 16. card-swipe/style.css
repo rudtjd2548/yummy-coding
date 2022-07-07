@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
+
+html, body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+  background-color: #edeef3;
+}
+
+.frame {
+  position: relative;
+  width: 56vh;
+  height: 84vh;
+  max-width: 400px;
+  max-height: 600px;
+  z-index: 1;
+}
+
+.icons {
+  margin-top: 3vh;
+  user-select: none;
+  z-index: 1;
+}
+
+.icons > svg {
+  width: 10vh;
+  height: 10vh;
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.icons > svg:nth-child(1) { fill: #fb4f68; margin-right: 2vh; }
+.icons > svg:nth-child(2) { fill: #4dca93; }
+.icons > svg > path:nth-child(1) { fill: #fff; }
+
+.card {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #f1f1f1;
+  border-radius: 10px;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  touch-action: none;
+}
+
+.card .is-like {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+}
+.card .is-like::after {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  transform: translateX(-50%) rotate(-10deg);
+  width:70%;
+  height: 13%;
+  font-size: 3em;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  border-radius: 0.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .like::after {
+  content: "YUMM";
+  color: #4dca93;
+  border: 0.1em solid #4dca93;
+}
+
+.card .nope::after {
+  content: "YUCK";
+  color: #fb4f68;
+  border: 0.1em solid #fb4f68;
+}
+
+.card .bottom {
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(to top, #00000080, #00000000);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 7%;
+  font-weight: 400;
+}
+
+.card .bottom .title > span:nth-child(1) {
+  font-size: 2em;
+  font-weight: 700;
+  margin-right: 0.2em;
+}
+
+.card .bottom .title > span:nth-child(2) {
+  font-size: clamp(13px, 1.5em, 25px);
+}
+
+.card .bottom .title > span:nth-child(2) > b {
+  font-size: 0.6em;
+  margin-right: 0.2em;
+}
+
+.card .bottom .info {
+  margin: 3% 0 0 2%;
+  font-size: clamp(10px, 1.1em, 20px);
+}
+
+@media screen and (max-height: 540px) {
+  .frame {
+    width: 54vh;
+    height: 81vh;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-height: 440px) {
+  .frame {
+    font-size: 8px;
+  }
+}
