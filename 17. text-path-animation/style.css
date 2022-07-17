@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+  background: #FCEDDA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+svg {
+ fill: none;
+ height: 100px;
+ stroke-width: 53px;
+ stroke-linecap: round;
+}
+
+path {
+  stroke-dasharray: var(--length);
+  stroke-dashoffset: var(--length);
+}
+
+.svg-bg > path {
+  stroke: #FFF;
+  animation: path var(--duration) ease forwards;
+  animation-delay: var(--delay);
+}
+
+.svg-main > path {
+  stroke: #F87474;
+  animation: path var(--duration) ease-in forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes path {
+  0% { stroke-dashoffset: var(--length); }
+  100% { stroke-dashoffset: 0; }
+}
