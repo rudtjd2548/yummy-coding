@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html, body {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #1f1f1f;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.addEventListener('click', spriteEffect)
+
+    function spriteEffect(e) {
+      const width = 140
+      const height = 140
+      const cols = 8
+      const rows = 4
+      let current = 0
+      const intervalGap = 1000 / 30
+
+      const sprite = document.createElement('div')
+      sprite.style.position = 'absolute'
+      sprite.style.left = e.clientX + 'px'
+      sprite.style.top = e.clientY + 'px'
+      sprite.style.backgroundImage = 'url("./explosion15.png")'
+      sprite.style.width = width + 'px'
+      sprite.style.height = height + 'px'
+      sprite.style.backgroundSize = `${width * cols}px ${height * rows}px`
+      sprite.style.transform = `
+        translate(-50%, -50%)
+        rotate(${randomNumBetween(0, 360)}deg)
+        scale(${randomNumBetween(0.7, 1.1)})
+      `
+      document.body.append(sprite)
+
+      const intervalId = setInterval(() => {
+        const currentCol = current % cols // 나머지 구하기
+        const currentRow = Math.floor(current / cols) // 몫 구하기
+
+        sprite.style.backgroundPosition = 
+          `${-width * currentCol}px ${-height * currentRow}px`
+
+        if (++current % (rows * cols) === 0) {
+          clearInterval(intervalId)
+          document.body.removeChild(sprite)
+        }
+      }, intervalGap)
+    }
+    
+    function randomNumBetween (min, max) {
+      return Math.random() * (max - min) + min
+    }
+  </script>
+</body>
+</html>
