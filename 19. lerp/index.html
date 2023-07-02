@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #circle {
+      position: absolute;
+      width: 50px; 
+      height: 50px; 
+      border-radius: 50%; 
+      background-color: hotpink; 
+    }
+  </style>
+</head>
+<body>
+  <div id="circle"></div>
+
+  <script>
+    const circle = document.querySelector('#circle')
+
+    let mouseX = 0, mouseY = 0, startX = 0, startY = 0
+
+    window.addEventListener('mousemove', e => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    })
+
+    function frame() {
+      requestAnimationFrame(frame)
+
+      startX = lerp(startX, mouseX, 0.05)
+      startY = lerp(startY, mouseY, 0.05)
+      
+      circle.style.transform = `translate(${startX}px, ${startY}px)`
+    }
+    requestAnimationFrame(frame);
+
+    function lerp(s, e, a) {
+      return s + (e - s) * a
+    }
+  </script>
+</body>
+</html>
